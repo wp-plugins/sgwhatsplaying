@@ -1,0 +1,47 @@
+#!/bin/sh
+# Start/stop the sgwpupdate daemon.
+#
+### BEGIN INIT INFO
+# Provides:          sgwpupdate
+# Required-Start:    $network
+# Required-Stop:     $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Update WordPress with current MPD song information.
+# Description:       Update WordPress with current MPD song information.
+### END INIT INFO
+
+DAEMON=/usr/bin/sgwpupdate.py
+DAEMONARGS=--daemon
+PIDFILE=/var/run/sgwpupdate.pid
+NAME=sgwpupdate.py
+
+
+test -f $DAEMON || exit 0
+
+. /lib/lsb/init-functions
+
+case "$1" in
+start)	log_daemon_msg "Starting sgwpupdate" "sgwpupdate"
+        start-stop-daemon --start --quiet --pidfile $PIDFILE --name sgwpupdate.py  --startas $DAEMON -- $DAEMONARGS
+        log_end_msg $?
+	;;
+stop)	log_daemon_msg "Stopping sgwpupdate" "sgwpupdate"
+        start-stop-daemon --stop --quiet --pidfile $PIDFILE --name sgwpupdate.py
+        log_end_msg $?
+        ;;
+restart) log_daemon_msg "Restarting sgwpupdate" "sgwpupdate" 
+        start-stop-daemon --stop --retry 5 --quiet --pidfile $PIDFILE --name $NAME
+        start-stop-daemon --start --quiet --pidfile $PIDFILE --name NAME --startas $DAEMON -- $DAEMONARGS
+        log_end_msg $?
+        ;;
+force-reload) log_daemon_msg "Reloading configuration files for sgwpupdate" "sgwpupdate"
+        start-stop-daemon --stop --retry 5 --quiet --pidfile $PIDFILE --name $NAME
+        start-stop-daemon --start --quiet --pidfile $PIDFILE --name NAME --startas $DAEMON -- $DAEMONARGS
+        log_end_msg $?
+        ;;
+*)	log_action_msg "Usage: /etc/init.d/sgwpupdate {start|stop|restart|force-reload}"
+        exit 2
+        ;;
+esac
+exit 0
