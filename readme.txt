@@ -2,7 +2,7 @@
 Contributors: vmole
 Tags: music, sidebar
 Requires at least: 2.2.0
-Tested up to: 2.2.1
+Tested up to: 2.3
 Stable tag: trunk
 
 Display currently playing song from MPD or other music players in a sidebar widget.

@@ -51,9 +51,13 @@ def update_sgwhatsplaying(wpblogurl, wppassword,  wpdata):
     logging.debug("Parameters set as %s", params)
     params = urllib.urlencode(params)
     logging.debug("Parameters encoded as %s", params)
-    f = urllib.urlopen(wpblogurl, params)
-    logging.debug("url returned:\n %s", f.info())
-    logging.debug(f.read().splitlines()[:30])
+    try:
+        f = urllib.urlopen(wpblogurl, params)
+        logging.debug("url returned:\n %s", f.info())
+        logging.debug(f.read().splitlines()[:30])
+    except:
+        logging.info("Server at %s unavailable", wpblogurl)
+    return
 
 
 def main(argv=None):

@@ -5,7 +5,7 @@ setup(name='sgwhatsplaying',
       py_modules=['sgwpmpd'],
       packages=['sgpyutil'],
 
-      version='1.0',
+      version='1.1',
       url='http://www.moregruel.net/',
       description='Update WordPress plugin with song info',
       author='Steve Greenland',

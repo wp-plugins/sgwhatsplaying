@@ -51,8 +51,7 @@ function widget_SGWhatsPlaying($args) {
 		echo stripslashes($song->title);
 		if ($song->state == 'pause') {
 			echo " (paused)";
-		}
-		if ($timeago > 30 * 60) {
+		} elseif ($timeago > 30 * 60) {
 			echo " (no recent updates)";
 		}
 	}

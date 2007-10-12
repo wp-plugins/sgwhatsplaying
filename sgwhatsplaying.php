@@ -4,7 +4,7 @@ Plugin Name: SG What's Playing
 Plugin URI: http://www.moregruel.net/?page_id=73
 Description: Display currently playing song in sidebar or posts
 Author: Steve Greenland <steveg@moregruel.net>
-Version: 1.0
+Version: 1.1
 Author URI: http://www.moregruel.net/
 */
 
@@ -47,7 +47,11 @@ function sgwhatsplaying_install() {
 	  	state CHAR(10)
 		);";
 
-		require_once(ABSPATH . 'wp-admin/upgrade-functions.php');
+		if( file_exists( ABSPATH . 'wp-admin/includes/upgrade.php' ))
+			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		else
+			require_once(ABSPATH . 'wp-admin/upgrade-functions.php');
+
 		dbDelta($sql);
 
 		$coreid = 1;

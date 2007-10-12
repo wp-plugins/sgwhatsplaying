@@ -1,0 +1,19 @@
+2007-10-12  Release 1.1
+
+	* sgwhatsplaying.php:
+	Update version to 1.1
+	[bc957bbefa77]
+
+	* sgwpupdate.py:
+	Don't crash when remote server isn't available.
+	[b07afd9c61c1]
+
+	* widget.php:
+	Don't show 'no recent updates' in pause mode, because sgwpupdate
+	doesn't send new info without changes.
+	[908476e6da86]
+
+	* sgwhatsplaying.php:
+	Fix for WP 2.3
+	[cbf0db8fb0e5]
+
